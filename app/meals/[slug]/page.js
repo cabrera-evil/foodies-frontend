@@ -2,15 +2,22 @@ import styles from './page.module.css';
 import { findBySlug } from '@/app/_lib/meals';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default async function MealDetailsPage({ params }) {
-    const meal = await findBySlug(params.slug)
+    const meal = await findBySlug(params.slug);
 
     if (!meal)
         return notFound();
 
     return (
-        <>
+        <MealDetailsContent meal={meal} />
+    );
+}
+
+function MealDetailsContent({ meal }) {
+    return (
+        <Suspense fallback={<p className="loading">Fetching meal...</p>}>
             <header className={styles.header}>
                 <div className={styles.image}>
                     <Image src={meal.image} alt={meal.title} fill />
@@ -35,6 +42,6 @@ export default async function MealDetailsPage({ params }) {
                     }}
                 />
             </main >
-        </>
+        </Suspense>
     );
 }
