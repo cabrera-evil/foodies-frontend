@@ -1,11 +1,11 @@
 import MelasGrid from '../_components/meals/meals-grid';
 import styles from './page.module.css'
 import Link from 'next/link'
-import { getMeals } from '../_lib/meals';
+import { findAll } from '../_lib/meals';
 import { Suspense } from 'react';
 
 async function Meals() {
-    const meals = await getMeals();
+    const meals = await findAll();
     return (
         <MelasGrid meals={meals} />
     )
