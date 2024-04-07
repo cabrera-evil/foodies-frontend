@@ -41,6 +41,7 @@ export async function shareMeal(prevState, formData) {
     try {
         validateMeal(meal);
         await saveMeal(meal).then(() => {
+            revalidatePath('/meals');
             redirect('/meals');
         });
     } catch (error) {

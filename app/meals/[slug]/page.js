@@ -15,6 +15,19 @@ export default async function MealDetailsPage({ params }) {
     );
 }
 
+export async function generateMetadata({ params }) {
+    const meal = await findBySlug(params.slug);
+
+    if (!meal)
+        return notFound();
+
+    return {
+        title: meal.title,
+        description: meal.summary,
+        image: meal.image,
+    };
+}
+
 function MealDetailsContent({ meal }) {
     return (
         <Suspense fallback={<p className="loading">Fetching meal...</p>}>
