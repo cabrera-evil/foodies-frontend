@@ -12,7 +12,7 @@
   "dependencies": {
     "better-sqlite3": "^9.4.3",
     "http-exception": "^0.0.2",
-    "next": "14.0.3",
+    "next": "14.1.1",
     "react": "^18",
     "react-dom": "^18",
     "slugify": "^1.6.6",
